@@ -1,8 +1,6 @@
 const choices = document.getElementById('choices');
-const answers = document.getElementById('answers');
 const question = document.getElementById('question');
 const submitButton = document.getElementById('submitButton');
-const restartButton = document.getElementById('restart')
 
 
 const elemData =
@@ -504,6 +502,24 @@ function checkParticle(particle, array) {
     return returnValue;
 }
 
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
 
 function modifyChoices(elem, particle, particleArr) {
     const arr = [
@@ -540,73 +556,41 @@ function App(){
     question.appendChild(spanQuestion);
 
     //the variants of the test
-    const variants = modifyChoices(element, particle, particlesData);
-    
+    const oldVariants = modifyChoices(element, particle, particlesData);
+    const variants = shuffle(oldVariants);
+
     variants.forEach( elem => {
         const spanChoice = document.createElement('span');
-        spanChoice.classList.add('draggables');
-        spanChoice.setAttribute('draggable', "true");
-        if (elem.type == particle.name) {
+        if (elem.type == particle.name) {   
             spanChoice.id = 'ans';
         } else {
             spanChoice.id = `${elemStringify(elem.element.newElement)}`;
         }
         spanChoice.innerHTML = elemStringify(elem.element.newElement);
+        spanChoice.addEventListener('click', (e) => {
+            if ((e.target.id == 'ans' && e.target.tagName == 'SPAN') || ((e.target.tagName == 'SUP' || 'SUB') && e.target.parentNode.id =='ans')){
+                question.innerHTML = "";
+                choices.innerHTML = "";
+                App();
+            } else {
+                if (e.target.tagName == 'SPAN') {
+                    e.target.classList.add('red');
+                } else if (e.target.tagName == 'SUP' || 'SUB'){
+                    e.target.parentNode.classList.add('red');
+                }
+            }
+        })
+
+
         choices.appendChild(spanChoice);
     })
 
 
-    //draggable code
-    let draggables = document.querySelectorAll('.draggables');
-    for(const draggableElement of draggables) {
-    draggableElement.addEventListener('dragstart', e => {
-        let selected = e.target;
-        console.log(selected);
-        answers.addEventListener('dragover', e => {
-            e.preventDefault();
-        })
-        answers.addEventListener('drop', e => {
-            if (selected == null) {
-
-            } else {
-                answers.appendChild(selected);
-                selected = null;
-            }
-            
-        })
-        choices.addEventListener('dragover', e => {
-            e.preventDefault();
-        })
-        choices.addEventListener('drop', e => {
-            if (selected == null) {
-            }
-            else {
-            choices.appendChild(selected);
-            selected = null;
-            }
-            
-            
-        })
-    })
-    }
+  
 
 
-    submitButton.addEventListener('click', () => {
-        if ( answers.querySelector('#ans') ) {
-            const ans = document.querySelector('#ans');
-            question.appendChild(ans);
-            const spanAns = document.createElement('h1');
-            spanAns.innerHTML = 'Жауабыңыз дұрыс секілді, қайтадан бастауды басыңыз'
-            answers.appendChild(spanAns);
-        }   
-    })
     
-    restartButton.addEventListener('click', () => {
-        question.innerHTML = "";
-        answers.innerHTML = "";
-        choices.innerHTML = "";
-        App();
-    })
+
 
 }
 

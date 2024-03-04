@@ -26,18 +26,13 @@ span, div, h1 {
 #question {
     display: flex;
     justify-content: space-around;
-    background-image: linear-gradient(rgb(216, 215, 215), rgb(233, 221, 221));
+    background: radial-gradient(circle at -4% -12.9%, rgb(74, 98, 110) 0.3%, rgb(30, 33, 48) 90.2%);
 }
 
-#answers {
-    background: #c2e59c;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-;
-}
+
 
 #choices {
-    background-image: linear-gradient(rgb(216, 215, 215), rgb(233, 221, 221));
+  background: radial-gradient(circle at -4% -12.9%, rgb(74, 98, 110) 0.3%, rgb(30, 33, 48) 90.2%);
     flex-wrap: wrap;
 }
 
@@ -68,93 +63,14 @@ span sup {
     left: 1rem;
 }
 
-.buttons {
-    display: flex;
-    flex-direction: column;    
+.red {
+  filter: invert(30%);
 }
 
-button {
-    display: flex;
-    height: 1.5rem;
-    width: 10rem;
-    justify-content: center;
-    margin: 0 auto;
+#choices span {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 200, 124) 0%, rgb(252, 251, 121) 90%);
 }
 
-
-#submitButton {
-  align-items: center;
-  appearance: none;
-  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-  border: 0;
-  border-radius: 6px;
-  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
-  height: 48px;
-  justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow,transform;
-  font-size: 18px;
-}
-
-#submitButton:focus {
-  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-}
-
-#submitButton:hover {
-  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-  transform: translateY(-2px);
-}
-
-#submitButton:active {
-  box-shadow: #3c4fe0 0 3px 7px inset;
-  transform: translateY(2px);
-}
-
-
-
-/* CSS */
-#restart {
-  background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);
-  border-radius: .5rem;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  display: flex;
-  font-size: 16px;
-  justify-content: center;
-  padding: 1rem 1.75rem;
-  text-decoration: none;
-  width: 10rem;
-  height: 4rem;
-  border: 0;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-#restart:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
-}
-
-@media (min-width: 768px) {
-  #restart {
-    padding: 1rem 2rem;
-  }
+#question span {
+  background: radial-gradient(circle at 7.5% 24%, rgb(237, 161, 193) 0%, rgb(250, 178, 172) 25.5%, rgb(190, 228, 210) 62.3%, rgb(215, 248, 247) 93.8%);
 }
